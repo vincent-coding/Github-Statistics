@@ -115,11 +115,24 @@ def getUsers():
         print("Gists: " + str(userJSON['public_gists']))
         print("Followers: " + str(userJSON['followers']))
         print("Following: " + str(userJSON['following']))
+        print("Created At: " + str(userJSON['created_at']))
+        print("Updated At: " + str(userJSON['updated_at']))
     else:
         print("ERROR: The username entered is invalid!")
 
 def getOrgs():
-    print("getOrgs")
+    organization = input("Enter the name of the organization: ")
+    req = requests.get("https://api.github.com/orgs/" + organization, headers={'User-Agent': CHROME_USER_AGENT})
+    json = req.json()
+    if not "message" in json:
+        print("")
+        print("Name: " + json["login"])
+        if(json['description'] != ""):
+            print("Description: " + str(json['description']))
+        else:
+            print("Description: None")
+    else:
+        print("ERROR: The name of the organization is invalid!")
 
 #################################################
 #           Launching the application           #
