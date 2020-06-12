@@ -126,11 +126,31 @@ def getOrgs():
     json = req.json()
     if not "message" in json:
         print("")
-        print("Name: " + json["login"])
+        print("Login: " + json["login"])
+        print("ID: " + str(json["id"]))
+        print("Node ID: " + json["node_id"])
+        print("URL: https://github.com/" + str(json['login']))
+        if(json['name'] != ""):
+            print("Name: " + str(json['name']))
+        else:
+            print("Name: None")
         if(json['description'] != ""):
             print("Description: " + str(json['description']))
         else:
             print("Description: None")
+        if(json['blog'] != None):
+            print("Website: " + str(json['blog']))
+        else:
+            print("Website: None")
+        if(json['email'] != None):
+            print("Email: " + str(json['email']))
+        else:
+            print("Email: None")
+        if(json['twitter_username'] != None):
+            print("Twitter Username: @" + str(json['twitter_username']))
+            print("Twitterl URL: https://twitter.com/" + str(json['twitter_username']))
+        else:
+            print("Twitter Username: None")
     else:
         print("ERROR: The name of the organization is invalid!")
 
